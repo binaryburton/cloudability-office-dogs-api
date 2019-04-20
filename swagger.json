@@ -1,0 +1,229 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Office Dogs API",
+      "description": "Tracks important information about our office dogs"
+    },
+    "servers": [
+      {
+        "url": "https://localhost:3000",
+        "description": "Local Server"
+      }
+    ],
+    "paths": {
+      "/office-dogs/dogs": {
+        "get": {
+          "description": "Obtain all dogs",
+          "responses": {
+            "200": {
+              "description": "Successful retreival of all user documents",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "owner": {
+                        "type": "string"
+                      },
+                      "notes": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "0": {
+                        "_id": "00001",
+                        "name": "barkley",
+                        "owner": "Kevin",
+                        "notes": "Fluffy, cute."
+                      },
+                      "1": {
+                        "_id": "00002",
+                        "name": "smithy",
+                        "owner": "Joe",
+                        "notes": "Crazy. Fast."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "description": "Adds a new dog!",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "notes": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "_id": "00001",
+                    "name": "barkley",
+                    "owner": "Kevin",
+                    "notes": "Fluffy, cute."
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful creation of new dog"
+            }
+          }
+        }
+      },
+      "/office-dogs/dogs/:id": {
+        "get": {
+          "description": "Get a dog with given key in parameters",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "Key to identify which dog to retreive"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful retreival of specified dog",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "owner": {
+                        "type": "string"
+                      },
+                      "notes": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "_id": "00001",
+                      "name": "barkley",
+                      "owner": "Kevin",
+                      "notes": "Fluffy, cute."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "description": "Update a specified dog",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "Key to identify which dog to update"
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "notes": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "_id": "00001",
+                    "name": "barkley",
+                    "owner": "Kevin",
+                    "notes": "Fluffy, cute."
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful update of specified dog",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Your dog has been updated"
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "description": "Deletes a single dog with given id parameter",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "schema": {
+                "type": "string"
+              },
+              "required": true,
+              "description": "Key to identify which dog to delete"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful deletion of specified dog",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "example": "Your dog has been deleted"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
